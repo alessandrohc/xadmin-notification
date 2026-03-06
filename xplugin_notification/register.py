@@ -42,12 +42,20 @@ class NotificationAdmin:
 
 	def notify_groups(self, groups: tuple, message: str, source=None, slug=None, **options):
 		"""Notifies a list of user groups"""
+		from django.contrib.auth import get_user_model
+		User = get_user_model()
+
+		users = User.objects.filter(
+			groups__in=groups,
+			is_staff=True,
+			is_active=True
+		).distinct()
+
 		notifications = []
-		for group in groups:
-			for user in group.user_set.filter(is_staff=True, is_active=True):
-				notifications.append(
-					self.notify(user, message, source=source, slug=slug, **options)
-				)
+		for user in users:
+			notifications.append(
+				self.notify(user, message, source=source, slug=slug, **options)
+			)
 		return notifications
 
 
