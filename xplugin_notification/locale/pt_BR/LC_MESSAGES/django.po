@@ -3,12 +3,11 @@
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-06-06 13:28-0300\n"
+"POT-Creation-Date: 2026-03-06 15:46-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -21,39 +20,39 @@ msgstr ""
 #: xplugin_notification/actions.py:10
 #, python-format
 msgid "Mark read selected %(verbose_name_plural)s"
-msgstr "Marque lido %(verbose_name_plural)s selecionados"
+msgstr "Marcar como lido os %(verbose_name_plural)s selecionados"
 
-#: xplugin_notification/adminx.py:56 xplugin_notification/models.py:17
+#: xplugin_notification/adminx.py:59 xplugin_notification/models.py:23
 msgid "Message"
 msgstr "Mensagem"
 
-#: xplugin_notification/apps.py:7 xplugin_notification/models.py:32
-msgid "Notifications (admin)"
-msgstr "Notificações (admin)"
+#: xplugin_notification/apps.py:7 xplugin_notification/models.py:38
+msgid "Administrative Notifications"
+msgstr "Notificações Administrativas"
 
-#: xplugin_notification/models.py:8
+#: xplugin_notification/models.py:14
 msgid "User source"
 msgstr "Usuário remetente"
 
-#: xplugin_notification/models.py:13
+#: xplugin_notification/models.py:19
 msgid "User recipient"
 msgstr "Usuário destinatário"
 
-#: xplugin_notification/models.py:19
+#: xplugin_notification/models.py:25
 msgid "URL"
 msgstr "URL"
 
-#: xplugin_notification/models.py:21
+#: xplugin_notification/models.py:27
 msgid "Read"
 msgstr "Lido"
 
-#: xplugin_notification/models.py:22
+#: xplugin_notification/models.py:28
 msgid "Read date"
 msgstr "Data de leitura"
 
-#: xplugin_notification/models.py:31
-msgid "Notification (admin)"
-msgstr "Notificação (admin)"
+#: xplugin_notification/models.py:37
+msgid "Administrative Notification"
+msgstr "Notificação Administrativa"
 
 #: xplugin_notification/plugin.py:18
 msgid "Notifications"

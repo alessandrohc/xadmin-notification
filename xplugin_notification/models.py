@@ -34,6 +34,6 @@ class Notification(models.Model):
 		return str(self.message)
 
 	class Meta:
-		verbose_name = _("Notification (admin)")
-		verbose_name_plural = _("Notifications (admin)")
+		verbose_name = _("Administrative Notification")
+		verbose_name_plural = _("Administrative Notifications")
 		ordering = ['-created_at', 'is_read']
