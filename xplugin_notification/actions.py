@@ -17,3 +17,5 @@ class MarkAsReadAction(BaseActionView):
 			raise PermissionDenied
 
 		queryset.update(is_read=True, read_datetime=timezone.now())
+		from xadmin.auditlog import AuditLog
+		AuditLog.bulk_update(self.request, queryset, fields=['is_read'])
