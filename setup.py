@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(
 	name='xadmin-notification',
-	version='1.3.0',
+	version='1.3.1',
 	packages=[
 		'xplugin_notification',
 		'xplugin_notification.rest',
