@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-03-06 15:46-0300\n"
+"POT-Creation-Date: 2026-03-24 17:27-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,12 +17,29 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: xplugin_notification/actions.py:10
+#: xplugin_notification/actions.py:11
 #, python-format
 msgid "Mark read selected %(verbose_name_plural)s"
 msgstr "Marcar como lido os %(verbose_name_plural)s selecionados"
 
-#: xplugin_notification/adminx.py:59 xplugin_notification/models.py:23
+#: xplugin_notification/actions.py:24
+#, python-format
+msgid "Successfully marked %(count)d %(items)s as read."
+msgstr "%(count)d %(items)s marcado(s) como lido(s) com sucesso."
+
+#: xplugin_notification/adminx.py:66 xplugin_notification/models.py:25
+msgid "URL"
+msgstr "URL"
+
+#: xplugin_notification/adminx.py:74 xplugin_notification/models.py:27
+msgid "Read"
+msgstr "Lido"
+
+#: xplugin_notification/adminx.py:75
+msgid "Unread"
+msgstr "Não lido"
+
+#: xplugin_notification/adminx.py:89 xplugin_notification/models.py:23
 msgid "Message"
 msgstr "Mensagem"
 
@@ -38,17 +55,17 @@ msgstr "Usuário remetente"
 msgid "User recipient"
 msgstr "Usuário destinatário"
 
-#: xplugin_notification/models.py:25
-msgid "URL"
-msgstr "URL"
-
-#: xplugin_notification/models.py:27
-msgid "Read"
-msgstr "Lido"
-
 #: xplugin_notification/models.py:28
 msgid "Read date"
 msgstr "Data de leitura"
+
+#: xplugin_notification/models.py:30
+msgid "Created at"
+msgstr "Criado em"
+
+#: xplugin_notification/models.py:31
+msgid "Updated at"
+msgstr "Atualizado em"
 
 #: xplugin_notification/models.py:37
 msgid "Administrative Notification"

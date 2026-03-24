@@ -4,6 +4,21 @@ $(function () {
         this.options = options || {};
     }
 
+    function getCookie(name) {
+        var cookieValue = null;
+        if (document.cookie && document.cookie !== '') {
+            var cookies = document.cookie.split(';');
+            for (var i = 0; i < cookies.length; i++) {
+                var cookie = jQuery.trim(cookies[i]);
+                if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
+    }
+
     Notification.prototype.render = function (elId, options) {
         return $(elId).template_render$(options);
     }
@@ -55,6 +70,44 @@ $(function () {
             }))
         })
     }
+
+    /* Marca uma notificação como lida via POST e redireciona ao destino */
+    $(document).on("click", ".notification-read-link", function (e) {
+        e.preventDefault();
+        var $link = $(this);
+        var $item = $link.closest(".list-group-item");
+        var markUrl = $item.data("mark-as-read-url");
+        var targetUrl = $link.attr("href");
+
+        if (!markUrl || $item.data("is-read")) {
+            // Já lida ou sem URL — redireciona direto
+            window.location.href = targetUrl;
+            return;
+        }
+
+        $.ajax({
+            type: "POST",
+            url: markUrl,
+            data: {"csrfmiddlewaretoken": getCookie('csrftoken')},
+            success: function () {
+                // Atualiza o badge decrementando
+                var $badge = $(".notification-menu .badge-notify");
+                var count = parseInt($badge.text(), 10) || 0;
+                count = Math.max(0, count - 1);
+                if (count > 0) {
+                    $badge.text(count);
+                } else {
+                    $badge.text(0).hide();
+                }
+                // Marca visualmente como lido
+                $item.removeClass("list-group-item-unread");
+            },
+            complete: function () {
+                // Redireciona independente do resultado do mark-as-read
+                window.location.href = targetUrl;
+            }
+        });
+    });
 
     $(".notification-menu").on("show.bs.dropdown", function () {
         var notification = new Notification($(this).find(".dropdown-menu .notification-message-item"));

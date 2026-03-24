@@ -38,23 +38,14 @@ class NotificationMenuPlugin(BaseAdminPlugin):
 		"""Enter the notifications menu"""
 		context = get_context_dict(context)
 		queryset = self._get_notifications()
-		if not queryset.exists():
-			# Does not render view because there are no messages
-			return
-		read_qs = queryset.filter(is_read=True)
+		# O dropdown exibe apenas notificações não lidas
 		unread_qs = queryset.filter(is_read=False)
+		if not unread_qs.exists():
+			return
 		context["notification_admin"] = {
 			"title": self._get_notifications_menu_title(),
-			"items": queryset,
-			"count": queryset.count(),
-			"read": {
-				"items": read_qs,
-				"count": read_qs.count(),
-			},
-			"unread": {
-				"items": unread_qs,
-				"count": unread_qs.count(),
-			},
+			"count": unread_qs.count(),
+			"items": unread_qs,
 			"url": self.get_model_url(self.notification_model, "changelist"),
 			"list_url": self.get_model_url(self.notification_model, "rest"),
 		}
@@ -107,7 +98,7 @@ class NotificationAdminPlugin(BaseAdminPlugin):
 		return serializer_class
 
 	def filter_queryset(self, queryset, *args, **kwargs):
-		queryset = queryset.filter(recipient=self.user)
+		queryset = queryset.filter(recipient=self.user, is_read=False)
 		if not self.notification_unlimited and self.notification_max_num:
 			queryset = queryset[:self.notification_max_num]
 		return queryset

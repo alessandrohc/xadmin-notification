@@ -27,8 +27,8 @@ class Notification(models.Model):
 	is_read = models.BooleanField(_("Read"), default=False)
 	read_datetime = models.DateTimeField(_("Read date"), blank=True, null=True)
 
-	created_at = models.DateTimeField(auto_now_add=True)
-	updated_at = models.DateTimeField(auto_now=True)
+	created_at = models.DateTimeField(_("Created at"), auto_now_add=True)
+	updated_at = models.DateTimeField(_("Updated at"), auto_now=True)
 
 	def __str__(self):
 		return str(self.message)

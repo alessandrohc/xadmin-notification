@@ -1,18 +1,18 @@
 {% load i18n %}
-{% if notification_admin.unread.count > 0 %}
+{% if notification_admin.count > 0 %}
     <li class="nav-item dropdown notification-menu">
         <a href="#" class="nav-link notification-link text-nowrap" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           <span class="fas fa-bell"></span>
           <span class="d-md-none d-xxl-inline-block">{{notification_admin.title}}</span>
           <span class="badge badge-pill badge-warning badge-notify">
-            {% if notification_admin.unread.count < 100 %}{{notification_admin.unread.count}}{% else %}99+{% endif %}
+            {% if notification_admin.count < 100 %}{{notification_admin.count}}{% else %}99+{% endif %}
           </span>
         </a>
         <!-- dropdown -->
         <div class="dropdown-menu dropdown-menu-rich dropdown-menu-right">
             <div class="dropdown-arrow mr-sm-4 pr-sm-4"></div>
             <h6 class="dropdown-header">
-                <span>{{notification_admin.title}}<span class="badge">({{notification_admin.count}})</span></span>
+                <span>{{notification_admin.title}} <span class="badge badge-pill badge-warning">{{notification_admin.count}}</span></span>
             </h6>
             <div class="dropdown-scroll-notification">
                 <div class="notification-message-item list-group list-group-bordered list-group-flush list-group-messages"

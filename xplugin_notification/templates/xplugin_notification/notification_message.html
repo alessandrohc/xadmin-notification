@@ -3,8 +3,10 @@
 {% blockcapture notification_message %}
   {% verbatim %}
   <!-- notification item -->
-  <div class="list-group-item">
-    <a href="{{ notification.url }}" class="stretched-link"></a>
+  <div class="list-group-item {% if not notification.is_read %}list-group-item-unread{% endif %}"
+       data-notification-id="{{ notification.id }}"
+       data-mark-as-read-url="{{ notification.mark_as_read_url }}">
+    <a href="{{ notification.url }}" class="stretched-link notification-read-link"></a>
     <!--user photo -->
     <div class="list-group-item-figure stretched-link-reset align-items-start pr-3">
       <!-- user link -->

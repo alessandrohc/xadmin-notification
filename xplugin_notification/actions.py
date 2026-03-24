@@ -1,6 +1,7 @@
 from django.core.exceptions import PermissionDenied
 from django.utils import timezone
 from django.utils.translation import gettext as _
+from django.contrib.admin.utils import model_ngettext
 from xadmin.plugins.actions import BaseActionView
 from xadmin.views import filter_hook
 
@@ -16,6 +17,11 @@ class MarkAsReadAction(BaseActionView):
 		if not self.has_change_permission():
 			raise PermissionDenied
 
-		queryset.update(is_read=True, read_datetime=timezone.now())
+		n = queryset.filter(is_read=False).update(is_read=True, read_datetime=timezone.now())
 		from xadmin.auditlog import AuditLog
 		AuditLog.bulk_update(self.request, queryset, fields=['is_read'])
+		self.message_user(
+			_("Successfully marked %(count)d %(items)s as read.") % {
+				"count": n, "items": model_ngettext(self.opts, n)
+			}, 'success'
+		)
