@@ -1,5 +1,5 @@
 {% load i18n %}
-{% if notification_admin.count > 0 %}
+{% if notification_admin.has_unread %}
     <li class="nav-item dropdown notification-menu">
         <a href="#" class="nav-link notification-link text-nowrap" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           <span class="fas fa-bell"></span>
@@ -24,4 +24,11 @@
             </a>
         </div>
      </li>
+{% else %}
+    <li class="nav-item notification-menu">
+        <a href="{{notification_admin.url}}" class="nav-link text-nowrap" title="{{notification_admin.title}}">
+          <span class="fas fa-bell"></span>
+          <span class="d-md-none d-xxl-inline-block">{{notification_admin.title}}</span>
+        </a>
+    </li>
 {% endif %}

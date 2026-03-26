@@ -2,6 +2,7 @@ import uuid
 
 from django.conf import settings
 from django.db import models
+from django.utils.html import strip_tags
 from django.utils.translation import gettext_lazy as _
 
 
@@ -31,7 +32,7 @@ class Notification(models.Model):
 	updated_at = models.DateTimeField(_("Updated at"), auto_now=True)
 
 	def __str__(self):
-		return str(self.message)
+		return strip_tags(self.message)
 
 	class Meta:
 		verbose_name = _("Administrative Notification")

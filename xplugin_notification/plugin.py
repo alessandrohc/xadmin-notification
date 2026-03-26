@@ -38,13 +38,15 @@ class NotificationMenuPlugin(BaseAdminPlugin):
 		"""Enter the notifications menu"""
 		context = get_context_dict(context)
 		queryset = self._get_notifications()
-		# O dropdown exibe apenas notificações não lidas
-		unread_qs = queryset.filter(is_read=False)
-		if not unread_qs.exists():
+		# only show menu if the user has received at least one notification
+		if not queryset.exists():
 			return
+		unread_qs = queryset.filter(is_read=False)
+		unread_count = unread_qs.count()
 		context["notification_admin"] = {
 			"title": self._get_notifications_menu_title(),
-			"count": unread_qs.count(),
+			"count": unread_count,
+			"has_unread": unread_count > 0,
 			"items": unread_qs,
 			"url": self.get_model_url(self.notification_model, "changelist"),
 			"list_url": self.get_model_url(self.notification_model, "rest"),
@@ -54,18 +56,20 @@ class NotificationMenuPlugin(BaseAdminPlugin):
 			context=context,
 			request=self.request
 		))
-		nodes.extend([
-			render_to_string(
-				"xplugin_notification/notification_loading.html",
-				context=context,
-				request=self.request
-			),
-			render_to_string(
-				"xplugin_notification/notification_retry.html",
-				context=context,
-				request=self.request
-			)
-		])
+		# message dropdown is only needed when there are unread notifications
+		if unread_count > 0:
+			nodes.extend([
+				render_to_string(
+					"xplugin_notification/notification_loading.html",
+					context=context,
+					request=self.request
+				),
+				render_to_string(
+					"xplugin_notification/notification_retry.html",
+					context=context,
+					request=self.request
+				)
+			])
 
 
 class NotificationAdminPlugin(BaseAdminPlugin):
@@ -102,6 +106,29 @@ class NotificationAdminPlugin(BaseAdminPlugin):
 		if not self.notification_unlimited and self.notification_max_num:
 			queryset = queryset[:self.notification_max_num]
 		return queryset
+
+
+class NotificationDetailPlugin(BaseAdminPlugin):
+	"""Marks a notification as read and renders HTML message in detail view"""
+	notification_detail_active = False
+
+	def init_request(self, *args, **kwargs):
+		return self.notification_detail_active
+
+	def get_context(self, context):
+		from django.utils import timezone
+		obj = context.get("object")
+		if obj and not obj.is_read and obj.recipient == self.user:
+			obj.is_read = True
+			obj.read_datetime = timezone.now()
+			obj.save(update_fields=["is_read", "read_datetime", "updated_at"])
+		return context
+
+	def get_field_result(self, result, field_name):
+		# allow message field to render HTML in detail view
+		if field_name == "message":
+			result.allow_tags = True
+		return result
 
 
 class GuardianAdminPlugin(BaseAdminPlugin):

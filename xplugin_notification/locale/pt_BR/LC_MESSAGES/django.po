@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-03-24 17:27-0300\n"
+"POT-Creation-Date: 2026-03-26 08:25-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -27,47 +27,64 @@ msgstr "Marcar como lido os %(verbose_name_plural)s selecionados"
 msgid "Successfully marked %(count)d %(items)s as read."
 msgstr "%(count)d %(items)s marcado(s) como lido(s) com sucesso."
 
-#: xplugin_notification/adminx.py:66 xplugin_notification/models.py:25
-msgid "URL"
-msgstr "URL"
-
-#: xplugin_notification/adminx.py:74 xplugin_notification/models.py:27
+#: xplugin_notification/adminx.py:56 xplugin_notification/adminx.py:143
+#: xplugin_notification/models.py:28
 msgid "Read"
 msgstr "Lido"
 
-#: xplugin_notification/adminx.py:75
+#: xplugin_notification/adminx.py:59 xplugin_notification/adminx.py:144
 msgid "Unread"
 msgstr "Não lido"
 
-#: xplugin_notification/adminx.py:89 xplugin_notification/models.py:23
-msgid "Message"
-msgstr "Mensagem"
+#: xplugin_notification/adminx.py:72
+msgid "Open link"
+msgstr "Abrir link"
 
-#: xplugin_notification/apps.py:7 xplugin_notification/models.py:38
-msgid "Administrative Notifications"
-msgstr "Notificações Administrativas"
+#: xplugin_notification/adminx.py:82
+msgid "Details"
+msgstr "Detalhes"
 
-#: xplugin_notification/models.py:14
-msgid "User source"
-msgstr "Usuário remetente"
+#: xplugin_notification/adminx.py:85
+msgid "Recipient"
+msgstr "Destinatário"
 
-#: xplugin_notification/models.py:19
-msgid "User recipient"
-msgstr "Usuário destinatário"
+#: xplugin_notification/adminx.py:90
+msgid "Source"
+msgstr "Remetente"
 
-#: xplugin_notification/models.py:28
-msgid "Read date"
-msgstr "Data de leitura"
-
-#: xplugin_notification/models.py:30
+#: xplugin_notification/adminx.py:95 xplugin_notification/models.py:31
 msgid "Created at"
 msgstr "Criado em"
 
-#: xplugin_notification/models.py:31
+#: xplugin_notification/adminx.py:100 xplugin_notification/models.py:29
+msgid "Read date"
+msgstr "Data de leitura"
+
+#: xplugin_notification/adminx.py:158 xplugin_notification/models.py:24
+msgid "Message"
+msgstr "Mensagem"
+
+#: xplugin_notification/apps.py:7 xplugin_notification/models.py:39
+msgid "Administrative Notifications"
+msgstr "Notificações Administrativas"
+
+#: xplugin_notification/models.py:15
+msgid "User source"
+msgstr "Usuário remetente"
+
+#: xplugin_notification/models.py:20
+msgid "User recipient"
+msgstr "Usuário destinatário"
+
+#: xplugin_notification/models.py:26
+msgid "URL"
+msgstr "URL"
+
+#: xplugin_notification/models.py:32
 msgid "Updated at"
 msgstr "Atualizado em"
 
-#: xplugin_notification/models.py:37
+#: xplugin_notification/models.py:38
 msgid "Administrative Notification"
 msgstr "Notificação Administrativa"
 
