@@ -88,7 +88,7 @@ $(function () {
         $.ajax({
             type: "POST",
             url: markUrl,
-            data: {"csrfmiddlewaretoken": getCookie('csrftoken')},
+            data: {"csrfmiddlewaretoken": $.getCSRFToken()},
             success: function () {
                 // Atualiza o badge decrementando
                 var $badge = $(".notification-menu .badge-notify");
