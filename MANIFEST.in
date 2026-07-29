@@ -1,5 +1,11 @@
 include README.md
 include LICENSE
+include MANIFEST.in
 recursive-include xplugin_notification/locale *
 recursive-include xplugin_notification/static/xplugin_notification *
 recursive-include xplugin_notification/templates *
+
+# The suite ships in the sdist so the distribution can be verified from source.
+# It is kept out of the wheel by [tool.setuptools.packages.find] in pyproject.toml.
+include runtests.py
+recursive-include test_notification *.py
