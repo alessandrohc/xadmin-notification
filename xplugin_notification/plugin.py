@@ -8,7 +8,7 @@ from xadmin.plugins.utils import get_context_dict
 from xadmin.views import BaseAdminPlugin
 
 from xplugin_notification.models import Notification
-from xplugin_notification.rest.permisstion import HasNotificationPermission
+from xplugin_notification.rest.permission import HasNotificationPermission
 from xplugin_notification.rest.serializers import NotificationSerializer
 
 
